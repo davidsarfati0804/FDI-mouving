@@ -85,8 +85,8 @@ ul{list-style:none}
 
 /* ===================== HERO ===================== */
 .hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
-.hero-photo{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1544982503-9f984c14501a?auto=format&fit=crop&w=1800&q=85');background-size:cover;background-position:center}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(8,25,70,.82) 0%,rgba(8,25,70,.55) 55%,rgba(8,25,70,.15) 100%)}
+.hero-photo{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1800&q=85');background-size:cover;background-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(8,25,70,.80) 0%,rgba(8,25,70,.52) 55%,rgba(8,25,70,.12) 100%)}
 .hero-content{position:relative;z-index:2;padding:140px 0 90px;max-width:640px}
 .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px;animation:fadeUp .7s both .1s}
 .hero-eyebrow span{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7)}
@@ -142,7 +142,7 @@ ul{list-style:none}
 .dest-cities{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .city-pill{padding:3px 10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:11px;color:rgba(255,255,255,.8)}
 .dest-card--wide .dest-card-title{font-size:28px}
-.card-israel .dest-card-bg{background-image:url('https://images.unsplash.com/photo-1544982503-9f984c14501a?auto=format&fit=crop&w=900&q=80');background-size:cover;background-position:center}
+.card-israel .dest-card-bg{background-image:url('https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=900&q=80');background-size:cover;background-position:center}
 .card-dubai .dest-card-bg{background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80');background-size:cover;background-position:center}
 .card-intl .dest-card-bg{background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1400&q=80');background-size:cover;background-position:center}
 
@@ -266,13 +266,6 @@ ul{list-style:none}
 [data-delay="2"]{animation-delay:.2s}
 [data-delay="3"]{animation-delay:.3s}
 
-/* ===================== CTA BANNER ===================== */
-.cta-banner{background:var(--blue);padding:72px 0;text-align:center;position:relative;overflow:hidden}
-.cta-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.07) 1px,transparent 0);background-size:28px 28px}
-.cta-banner-inner{position:relative;z-index:1}
-.cta-banner h2{font-family:var(--ff-head);font-size:clamp(24px,3.5vw,36px);color:var(--white);margin-bottom:12px}
-.cta-banner p{font-size:16px;color:rgba(255,255,255,.68);margin-bottom:28px}
-.cta-banner-btns{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
 
 /* ===================== RESPONSIVE ===================== */
 @media(max-width:1024px){
@@ -688,17 +681,17 @@ ul{list-style:none}
     </div>
   </section>
 
-  <!-- CTA BANNER -->
-  <section class="cta-banner">
-    <div class="container">
-      <div class="cta-banner-inner">
-        <h2>Prêt à démarrer votre déménagement ?</h2>
-        <p>Visite technique à domicile gratuite · Devis sous 48h · Aucun engagement</p>
-        <div class="cta-banner-btns">
-          <a href="#" class="btn btn--outline-white" onclick="showPage('devis');return false">Devis gratuit →</a>
-          <a href="tel:0149430020" class="btn" style="background:#fff;color:var(--blue);border:2px solid #fff">01 49 43 00 20</a>
-          <a href="https://wa.me/33663520021" class="btn" style="background:#25D366;color:#fff;border:2px solid #25D366" target="_blank">WhatsApp</a>
-        </div>
+  <!-- CTA BANDE -->
+  <section style="background:var(--off-white);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:40px 0">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px">Prêt à démarrer votre déménagement ?</div>
+        <div style="font-size:14px;color:var(--text3)">Visite technique gratuite · Devis sous 48h · Sans engagement</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="#" class="btn btn--primary" onclick="showPage('devis');return false">Devis gratuit →</a>
+        <a href="tel:0149430020" class="btn btn--outline">📞 01 49 43 00 20</a>
+        <a href="https://wa.me/33663520021" class="btn" style="background:#25D366;color:#fff;border:2px solid #25D366" target="_blank">WhatsApp</a>
       </div>
     </div>
   </section>
