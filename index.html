@@ -84,31 +84,31 @@ ul{list-style:none}
 .hamburger span{display:block;width:20px;height:2px;background:var(--white);border-radius:2px;transition:var(--trans)}
 
 /* ===================== HERO ===================== */
-.hero{min-height:100vh;background:var(--blue-xdark);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-.hero-img{position:absolute;inset:0;background-image:url('camions.jpg');background-size:cover;background-position:center top;opacity:.28}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(120deg,rgba(12,36,97,.93) 0%,rgba(18,57,166,.82) 50%,rgba(12,36,97,.90) 100%)}
-.hero-pattern{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,1) 1px,transparent 0);background-size:28px 28px}
-.hero-glow{position:absolute;top:-15%;right:-5%;width:55%;height:75%;background:radial-gradient(ellipse,rgba(59,130,246,.15) 0%,transparent 65%);pointer-events:none}
-.hero-glow2{position:absolute;bottom:-20%;left:-5%;width:45%;height:55%;background:radial-gradient(ellipse,rgba(12,36,97,.8) 0%,transparent 65%);pointer-events:none}
-.hero-content{position:relative;z-index:2;padding:110px 0 72px}
+.hero{min-height:100vh;display:grid;grid-template-columns:54% 46%;position:relative}
+.hero-left{background:var(--blue-xdark);position:relative;overflow:hidden;display:flex;align-items:center}
+.hero-left::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);background-size:28px 28px;pointer-events:none}
+.hero-left::after{content:'';position:absolute;top:0;right:0;bottom:0;width:80px;background:linear-gradient(to right,transparent,rgba(12,36,97,.6));pointer-events:none}
+.hero-left-inner{position:relative;z-index:1;padding:130px 52px 80px 0;width:100%}
+.hero-right{position:relative;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-right-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(12,36,97,.55) 0%,rgba(12,36,97,.1) 40%,transparent 70%)}
+.hero-badges{position:absolute;bottom:36px;right:20px;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.dest-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:var(--r);padding:10px 16px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(10px);transition:var(--trans)}
+.dest-badge:hover{background:rgba(255,255,255,.2);transform:translateX(-3px)}
+.dest-flag{font-size:18px}
+.dest-name{font-size:12px;font-weight:600;color:var(--white)}
+.dest-info{font-size:10px;color:rgba(255,255,255,.55)}
 .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:28px;animation:fadeUp .7s both .1s}
-.hero-eyebrow span{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.hero-eyebrow span{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65)}
 .hero-eyebrow-line{width:32px;height:1px;background:rgba(255,255,255,.4)}
-.hero-title{font-family:var(--ff-head);font-size:clamp(36px,5vw,66px);font-weight:500;color:var(--white);line-height:1.1;margin-bottom:24px;animation:fadeUp .8s both .2s}
+.hero-title{font-family:var(--ff-head);font-size:clamp(32px,4vw,58px);font-weight:500;color:var(--white);line-height:1.1;margin-bottom:22px;animation:fadeUp .8s both .2s}
 .hero-title em{font-style:normal;color:#93c5fd}
-.hero-desc{font-size:17px;color:rgba(255,255,255,.65);max-width:500px;line-height:1.75;margin-bottom:36px;animation:fadeUp .8s both .3s}
+.hero-desc{font-size:16px;color:rgba(255,255,255,.62);max-width:440px;line-height:1.75;margin-bottom:34px;animation:fadeUp .8s both .3s}
 .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;animation:fadeUp .8s both .4s}
-.hero-stats{display:flex;align-items:center;gap:36px;margin-top:64px;padding-top:36px;border-top:1px solid rgba(255,255,255,.12);animation:fadeUp .8s both .55s;flex-wrap:wrap}
+.hero-stats{display:flex;align-items:center;gap:32px;margin-top:56px;padding-top:32px;border-top:1px solid rgba(255,255,255,.12);animation:fadeUp .8s both .55s;flex-wrap:wrap}
 .stat-item{text-align:center}
-.stat-num{font-family:var(--ff-head);font-size:32px;font-weight:600;color:var(--white);line-height:1}
-.stat-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
-.hero-dest{position:absolute;bottom:0;right:0;width:380px;height:100%;display:flex;align-items:center;justify-content:flex-end;z-index:1;overflow:hidden}
-.hero-dest-inner{padding:40px 32px;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-.dest-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:12px 18px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(8px);transition:var(--trans)}
-.dest-badge:hover{background:rgba(255,255,255,.13);transform:translateX(-4px)}
-.dest-flag{font-size:20px}
-.dest-name{font-size:13px;font-weight:600;color:var(--white)}
-.dest-info{font-size:11px;color:rgba(255,255,255,.45)}
+.stat-num{font-family:var(--ff-head);font-size:30px;font-weight:600;color:var(--white);line-height:1}
+.stat-label{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.07em;text-transform:uppercase;margin-top:4px}
 
 /* ===================== FEATURES ===================== */
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
@@ -279,11 +279,13 @@ ul{list-style:none}
 
 /* ===================== RESPONSIVE ===================== */
 @media(max-width:1024px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left-inner{padding:130px 24px 72px}
   .features-grid{grid-template-columns:1fr 1fr}
   .process-steps{grid-template-columns:1fr 1fr;gap:32px}
   .process-steps::before{display:none}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
-  .hero-dest{display:none}
   .dest-grid,.guarantees-grid,.devis-inner,.contact-grid,.grid-2{grid-template-columns:1fr}
   .dest-card--wide{grid-column:span 1}
   .testimonials-grid{grid-template-columns:1fr 1fr}
@@ -292,6 +294,7 @@ ul{list-style:none}
   .container{padding:0 16px}
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
+  .hero-left-inner{padding:110px 16px 64px}
   .features-grid,.testimonials-grid,.footer-grid,.climate-grid,.dest-grid{grid-template-columns:1fr}
   .process-steps{grid-template-columns:1fr 1fr}
   .section{padding:56px 0}
@@ -400,13 +403,10 @@ ul{list-style:none}
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-img"></div>
-    <div class="hero-bg"></div>
-    <div class="hero-pattern"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-glow2"></div>
-    <div class="container">
-      <div class="hero-content">
+
+    <!-- Gauche : texte sur fond bleu -->
+    <div class="hero-left">
+      <div class="hero-left-inner container" style="padding-left:24px">
         <div class="hero-eyebrow">
           <div class="hero-eyebrow-line"></div>
           <span>Spécialiste du déménagement international depuis 2001</span>
@@ -448,8 +448,12 @@ ul{list-style:none}
         </div>
       </div>
     </div>
-    <div class="hero-dest">
-      <div class="hero-dest-inner">
+
+    <!-- Droite : vraie photo des camions FDI -->
+    <div class="hero-right">
+      <img src="camions.jpg" alt="Camions FDI Moving - Storage Moving Packing">
+      <div class="hero-right-overlay"></div>
+      <div class="hero-badges">
         <div class="dest-badge">
           <span class="dest-flag">🇮🇱</span>
           <div>
@@ -468,11 +472,12 @@ ul{list-style:none}
           <span class="dest-flag">🌍</span>
           <div>
             <div class="dest-name">International</div>
-            <div class="dest-info">Groupage & déménagement complet</div>
+            <div class="dest-info">Groupage & déménagement</div>
           </div>
         </div>
       </div>
     </div>
+
   </section>
 
   <!-- FEATURES -->
