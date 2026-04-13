@@ -296,6 +296,12 @@ ul{list-style:none}
   .process-steps{grid-template-columns:1fr}
   .hero-actions{flex-direction:column;align-items:flex-start}
   .hero-actions .btn{width:100%;justify-content:center}
+  .hero-title{font-size:32px}
+  .hero-content{padding:100px 0 60px;max-width:100%}
+  .hero-desc{font-size:15px}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .section-title{font-size:24px}
+  .dest-card--wide{min-height:160px}
 }
 </style>
 </head>
@@ -652,7 +658,7 @@ ul{list-style:none}
       <div class="section-label">Notre équipe</div>
       <h2 class="section-title">Deux experts à votre service</h2>
       <p class="section-sub">Famille Levy — à l'écoute de vos projets en France et en Israël depuis plus de 20 ans.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px;max-width:720px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:48px;max-width:720px;width:100%">
 
         <!-- Haim -->
         <div style="background:var(--white);border:1px solid var(--border2);border-radius:var(--r2);overflow:hidden;transition:var(--trans)" class="team-card">
