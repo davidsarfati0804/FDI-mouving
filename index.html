@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shana &amp; Ethan — מזל טוב · Mariage à Tel Aviv</title>
-<meta name="description" content="Shana Sarfati &amp; Ethan Levy vous invitent à célébrer leur mariage, le temps d'un week-end de Chabbat à Tel Aviv.">
+<title id="pageTitle">Shana &amp; Ethan — מזל טוב · Mariage à Tel Aviv</title>
+<meta id="metaDesc" name="description" content="Shana Sarfati &amp; Ethan Levy vous invitent à célébrer leur mariage, le temps d'un week-end de Chabbat à Tel Aviv.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✡️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,10 +72,48 @@ nav{
 nav.scrolled{background:rgba(250,246,238,.92);backdrop-filter:blur(8px);box-shadow:0 2px 20px rgba(28,43,58,.08)}
 .monogram{font-family:'Playfair Display',serif;font-size:1.3rem;letter-spacing:.06em;color:var(--navy)}
 .monogram span{color:var(--gold-dark)}
+.nav-right{display:flex;align-items:center;gap:26px}
 .nav-links{display:flex;gap:34px;font-size:.82rem;letter-spacing:.09em;text-transform:uppercase}
 .nav-links a{opacity:.8;transition:.25s}
 .nav-links a:hover{opacity:1;color:var(--gold-dark)}
 .nav-toggle{display:none}
+.lang-switch{display:flex;gap:6px}
+.lang-switch button{
+  background:none;border:1px solid var(--line);color:var(--ink2);
+  padding:4px 9px;border-radius:2px;font-size:.68rem;letter-spacing:.04em;
+  cursor:pointer;font-family:'Montserrat',sans-serif;transition:.25s;
+}
+.lang-switch button.active{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+html[dir="rtl"] body{font-family:'Frank Ruhl Libre',serif}
+html[dir="rtl"] .names-sub,html[dir="rtl"] .nav-links,html[dir="rtl"] .hero-cta,
+html[dir="rtl"] .lang-switch button,html[dir="rtl"] .eyebrow{font-family:'Frank Ruhl Libre',serif}
+
+/* ---------- ENTRY GATE ---------- */
+.entry-gate{
+  position:fixed;inset:0;z-index:500;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  background:
+    radial-gradient(ellipse at 20% 15%,rgba(217,189,143,.35),transparent 55%),
+    radial-gradient(ellipse at 85% 85%,rgba(184,147,95,.25),transparent 55%),
+    linear-gradient(160deg,#f6efe0 0%,#f3ead9 45%,#e9dcc3 100%);
+  transition:opacity .6s ease,visibility .6s ease;
+}
+.entry-gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.entry-gate-inner{padding:0 24px}
+.entry-gate .heb-top{font-size:1.2rem;color:var(--gold-dark);letter-spacing:.05em;display:block;margin-bottom:22px}
+.entry-gate h1{
+  font-size:clamp(2.6rem,8vw,5rem);font-weight:500;color:var(--navy);
+  font-style:italic;line-height:1.05;font-family:'Playfair Display',serif;
+}
+.entry-gate h1 .amp{color:var(--gold);font-family:'Cormorant Garamond',serif;padding:0 .15em}
+.entry-gate .names-sub{
+  margin-top:14px;font-weight:500;letter-spacing:.35em;text-transform:uppercase;
+  font-size:.78rem;color:var(--ink2);
+}
+.entry-gate #enterBtn{
+  margin-top:40px;background:none;font-family:'Montserrat',sans-serif;cursor:pointer;
+}
+.entry-lang-switch{position:absolute;top:24px;right:28px}
 
 /* ---------- HERO ---------- */
 .hero{
@@ -170,6 +208,7 @@ nav.scrolled{background:rgba(250,246,238,.92);backdrop-filter:blur(8px);box-shad
 .venue-info h3{font-size:1.6rem;color:var(--navy);font-weight:500;margin-bottom:6px}
 .venue-info .addr{color:var(--gold-dark);letter-spacing:.05em;margin-bottom:22px;font-size:.95rem}
 .venue-info p{color:var(--ink2);line-height:1.85;font-weight:300}
+.venue-practical{margin-top:18px!important;font-size:.85rem;color:var(--gold-dark)!important;letter-spacing:.02em;line-height:1.6!important}
 .map-frame{border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:var(--shadow)}
 .map-frame iframe{width:100%;height:320px;border:0;display:block;filter:grayscale(.15) contrast(1.05)}
 
@@ -261,13 +300,34 @@ footer .credit{margin-top:34px;font-size:.72rem;letter-spacing:.1em;color:var(--
 </head>
 <body>
 
+<div class="entry-gate" id="entryGate">
+  <div class="lang-switch entry-lang-switch">
+    <button data-lang="fr" class="active">FR</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="he">HE</button>
+  </div>
+  <div class="entry-gate-inner">
+    <span class="heb-top heb">בְּשִׂמְחָה רַבָּה</span>
+    <h1>Shana <span class="amp">&amp;</span> Ethan</h1>
+    <div class="names-sub" data-i18n="names_sub">Famille Sarfati · Famille Levy</div>
+    <button class="hero-cta" id="enterBtn" data-i18n="enter_btn">🎵 Entrer</button>
+  </div>
+</div>
+
 <nav id="nav">
   <div class="monogram">S <span>&amp;</span> E</div>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
-  <div class="nav-links" id="navLinks">
-    <a href="#programme">Programme</a>
-    <a href="#lieu">Lieu &amp; Infos</a>
-    <a href="#rsvp">RSVP</a>
+  <div class="nav-right">
+    <div class="lang-switch" id="langSwitch">
+      <button data-lang="fr" class="active">FR</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="he">HE</button>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#programme" data-i18n="nav_programme">Programme</a>
+      <a href="#lieu" data-i18n="nav_lieu">Lieu &amp; Infos</a>
+      <a href="#rsvp" data-i18n="nav_rsvp">RSVP</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
   </div>
 </nav>
 
@@ -276,25 +336,25 @@ footer .credit{margin-top:34px;font-size:.72rem;letter-spacing:.1em;color:var(--
   <div class="hero-inner">
     <span class="heb-top heb">בְּשִׂמְחָה רַבָּה</span>
     <h1>Shana <span class="amp">&amp;</span> Ethan</h1>
-    <div class="names-sub">Famille Sarfati · Famille Levy</div>
+    <div class="names-sub" data-i18n="names_sub">Famille Sarfati · Famille Levy</div>
     <div class="date-line">
-      <span><b>Jeudi 17</b> — <b>Samedi 19 Septembre 2026</b></span>
+      <span><b data-i18n="hero_date1">Mercredi 29 Juillet</b> — <b data-i18n="hero_date2">Samedi 1er Août 2026</b></span>
       <span class="dot">✦</span>
-      <span>Tel Aviv - Yafo, Israël</span>
+      <span data-i18n="hero_location">Tel Aviv - Yafo, Israël</span>
     </div>
-    <a href="#programme" class="hero-cta">Découvrir le week-end</a>
+    <a href="#programme" class="hero-cta" data-i18n="hero_cta">Découvrir le week-end</a>
   </div>
-  <div class="scroll-cue"><span>Houppa &amp; Chabbat</span><span class="line"></span></div>
+  <div class="scroll-cue"><span data-i18n="scrollcue">Houppa &amp; Chabbat</span><span class="line"></span></div>
 </header>
 
 <!-- COUNTDOWN -->
 <div class="countdown-band">
   <div class="wrap">
     <div class="countdown" id="countdown">
-      <div><div class="num" id="cd-days">--</div><div class="lab">Jours</div></div>
-      <div><div class="num" id="cd-hours">--</div><div class="lab">Heures</div></div>
-      <div><div class="num" id="cd-min">--</div><div class="lab">Minutes</div></div>
-      <div><div class="num" id="cd-sec">--</div><div class="lab">Secondes</div></div>
+      <div><div class="num" id="cd-days">--</div><div class="lab" data-i18n="cd_days">Jours</div></div>
+      <div><div class="num" id="cd-hours">--</div><div class="lab" data-i18n="cd_hours">Heures</div></div>
+      <div><div class="num" id="cd-min">--</div><div class="lab" data-i18n="cd_min">Minutes</div></div>
+      <div><div class="num" id="cd-sec">--</div><div class="lab" data-i18n="cd_sec">Secondes</div></div>
     </div>
   </div>
 </div>
@@ -303,9 +363,9 @@ footer .credit{margin-top:34px;font-size:.72rem;letter-spacing:.1em;color:var(--
 <section class="intro">
   <div class="wrap center reveal">
     <span class="eyebrow heb">אֵין שִׂמְחָה כְּהַתָּרַת הַסְּפֵקוֹת</span>
-    <h2 class="title-lg">Un week-end, deux familles, une seule joie</h2>
+    <h2 class="title-lg" data-i18n="intro_title">Un week-end, deux familles, une seule joie</h2>
     <div class="divider"></div>
-    <p>
+    <p data-i18n="intro_p">
       La famille Sarfati et la famille Levy ont l'immense bonheur de vous convier
       à célébrer le mariage de Shana &amp; Ethan. Venus de Paris et de Tel Aviv,
       nous vous invitons à partager avec nous un Chabbat complet autour de la Houppa
@@ -316,11 +376,11 @@ footer .credit{margin-top:34px;font-size:.72rem;letter-spacing:.1em;color:var(--
     <div class="families">
       <div class="family">
         <div class="name">Shana Sarfati</div>
-        <div class="role">Fille de David &amp; Vanessa Sarfati</div>
+        <div class="role" data-i18n="family1_role">Fille de David &amp; Vanessa Sarfati</div>
       </div>
       <div class="family">
         <div class="name">Ethan Levy</div>
-        <div class="role">Fils de Haïm &amp; Ruth Levy</div>
+        <div class="role" data-i18n="family2_role">Fils de Haïm &amp; Ruth Levy</div>
       </div>
     </div>
   </div>
@@ -331,40 +391,40 @@ footer .credit{margin-top:34px;font-size:.72rem;letter-spacing:.1em;color:var(--
   <div class="wrap">
     <div class="center reveal">
       <span class="eyebrow heb">סֵדֶר הַשַּׁבָּת</span>
-      <h2 class="title-lg">Le programme du week-end</h2>
+      <h2 class="title-lg" data-i18n="programme_title">Le programme du week-end</h2>
       <div class="divider"></div>
     </div>
 
     <div class="timeline">
       <div class="tl-item reveal">
-        <div class="when">Jeudi 17<br><small>20h00</small></div>
+        <div class="when"><span data-i18n="tl1_day">Mercredi 29</span><br><small data-i18n="tl1_time">20h00</small></div>
         <div>
           <h3>Houppa <span class="heb">חוּפָּה וְקִדּוּשִׁין</span></h3>
-          <p>Cérémonie de la Houppa à Yafo, suivie de la soirée dansante,
+          <p data-i18n="tl1_desc">Cérémonie de la Houppa à Yafo, suivie de la soirée dansante,
              pour ouvrir en beauté ce week-end de célébrations.</p>
         </div>
       </div>
       <div class="tl-item reveal">
-        <div class="when">Vendredi 18<br><small>18h30</small></div>
+        <div class="when"><span data-i18n="tl2_day">Vendredi 31</span><br><small data-i18n="tl2_time">18h30</small></div>
         <div>
           <h3>Kabbalat Chabbat <span class="heb">קַבָּלַת שַׁבָּת</span></h3>
-          <p>Accueil des invités, office de Kabbalat Chabbat suivi du dîner traditionnel
+          <p data-i18n="tl2_desc">Accueil des invités, office de Kabbalat Chabbat suivi du dîner traditionnel
              du vendredi soir, tous ensemble en l'honneur des mariés.</p>
         </div>
       </div>
       <div class="tl-item reveal">
-        <div class="when">Samedi 19<br><small>Matin &amp; après-midi</small></div>
+        <div class="when"><span data-i18n-html="tl3_day">Samedi 1<sup>er</sup></span><br><small data-i18n="tl3_time">Matin &amp; après-midi</small></div>
         <div>
-          <h3>Shabbat en famille <span class="heb">שַׁבָּת חָתָן</span></h3>
-          <p>Office du matin, repas de Chabbat partagé et Seouda Shlishit (troisième repas)
+          <h3><span data-i18n="tl3_title">Shabbat en famille</span> <span class="heb">שַׁבָּת חָתָן</span></h3>
+          <p data-i18n="tl3_desc">Office du matin, repas de Chabbat partagé et Seouda Shlishit (troisième repas)
              en fin d'après-midi, dans la joie et les chants.</p>
         </div>
       </div>
     </div>
 
     <div class="dress-note reveal">
-      <b>Dress code</b> — Tenue de soirée chic. Tons blancs, dorés &amp; sable bienvenus.
-      La Houppa se tient en intérieur, au Hangar HaYam dans le port de Yafo.
+      <b>Dress code</b> — <span data-i18n="dress_text">Tenue de soirée chic. Tons blancs, dorés &amp; sable bienvenus.
+      La Houppa se tient en intérieur, au Lawrence, dans le vieux Yafo.</span>
     </div>
   </div>
 </section>
@@ -374,44 +434,44 @@ footer .credit{margin-top:34px;font-size:.72rem;letter-spacing:.1em;color:var(--
   <div class="wrap">
     <div class="center reveal">
       <span class="eyebrow heb">הַמָּקוֹם</span>
-      <h2 class="title-lg">Le lieu &amp; infos pratiques</h2>
+      <h2 class="title-lg" data-i18n="lieu_title">Le lieu &amp; infos pratiques</h2>
       <div class="divider"></div>
     </div>
 
     <div class="venue-grid">
       <div class="venue-info reveal">
-        <h3>Hangar HaYam</h3>
-        <div class="addr">Grande salle de réception · Port de Yafo, Israël</div>
-        <p>
-          La Houppa et la soirée se déroulent au Hangar HaYam, un ancien hangar portuaire
-          réaménagé en grande salle de réception, au cœur du port de Yafo. Hauts plafonds,
-          piste de danse et capacité de plus de 400 invités : largement de quoi accueillir
-          toute la famille et tous nos amis. Parking sur place et navettes prévues depuis
-          les hôtels partenaires à partir de 19h00 le jeudi.
+        <h3>The Lawrence</h3>
+        <div class="addr" data-i18n="venue_addr">18 rue HaTzorfim · Yafo, Tel Aviv, Israël</div>
+        <p data-i18n="venue_desc">
+          Entre les pierres centenaires du vieux Yafo et les premières lumières de Tel Aviv,
+          aux portes du marché aux puces, c'est là que nous vous accueillerons. Sous les
+          arches de pierre du Lawrence et à ciel ouvert sur son grand patio, nous danserons
+          ensemble jusqu'au bout de la nuit.
         </p>
+        <p class="venue-practical" data-i18n="venue_practical">Parking sur place · Navette depuis les hôtels partenaires dès 19h00 le mercredi.</p>
       </div>
       <div class="map-frame reveal">
-        <iframe src="https://www.google.com/maps?q=Jaffa+Port,+Tel+Aviv+Yafo,+Israel&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps?q=HaTzorfim+18,+Tel+Aviv-Yafo,+Israel&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
 
     <div class="hotels reveal">
-      <h3>Hôtels recommandés à Tel Aviv</h3>
+      <h3 data-i18n="hotels_title">Hôtels recommandés à Tel Aviv</h3>
       <div class="hotel-cards">
         <div class="hotel-card">
-          <div class="cat">Bord de mer</div>
+          <div class="cat" data-i18n="hotel1_cat">Bord de mer</div>
           <h4>Hilton Tel Aviv</h4>
-          <p>Vue mer, à 15 minutes du vieux Yafo. Navette prévue le jeudi soir.</p>
+          <p data-i18n="hotel1_desc">Vue mer, à 15 minutes du vieux Yafo. Navette prévue le mercredi soir.</p>
         </div>
         <div class="hotel-card">
-          <div class="cat">Vieux Yafo</div>
+          <div class="cat" data-i18n="hotel2_cat">Vieux Yafo</div>
           <h4>Setai Tel Aviv - Yafo</h4>
-          <p>À deux pas du Hangar HaYam, dans les ruelles historiques du vieux Yafo.</p>
+          <p data-i18n="hotel2_desc">À deux pas du Lawrence, dans les ruelles historiques du vieux Yafo.</p>
         </div>
         <div class="hotel-card">
-          <div class="cat">Charme</div>
+          <div class="cat" data-i18n="hotel3_cat">Charme</div>
           <h4>The Norman Tel Aviv</h4>
-          <p>Adresse élégante dans le quartier de Rothschild, à deux pas des restaurants cashers.</p>
+          <p data-i18n="hotel3_desc">Adresse élégante dans le quartier de Rothschild, à deux pas des restaurants cashers.</p>
         </div>
       </div>
     </div>
@@ -423,43 +483,43 @@ footer .credit{margin-top:34px;font-size:.72rem;letter-spacing:.1em;color:var(--
   <div class="wrap">
     <div class="center reveal">
       <span class="eyebrow">אישור הגעה</span>
-      <h2 class="title-lg">Confirmez votre présence</h2>
+      <h2 class="title-lg" data-i18n="rsvp_title">Confirmez votre présence</h2>
       <div class="divider"></div>
-      <p class="subtitle">Merci de répondre avant le 1er août 2026 afin que nous puissions
+      <p class="subtitle" data-i18n="rsvp_subtitle">Merci de répondre avant le 15 juillet 2026 afin que nous puissions
         organiser au mieux ce week-end avec vous.</p>
     </div>
 
     <form class="rsvp-form reveal" action="mailto:contact@ge-mesdocs.fr" method="post" enctype="text/plain">
       <div class="field">
-        <label for="nom">Nom &amp; prénom</label>
-        <input id="nom" name="nom" type="text" placeholder="Votre nom complet" required>
+        <label for="nom" data-i18n="label_nom">Nom &amp; prénom</label>
+        <input id="nom" name="nom" type="text" placeholder="Votre nom complet" data-i18n-placeholder="placeholder_nom" required>
       </div>
       <div class="field">
-        <label for="cote">Côté</label>
+        <label for="cote" data-i18n="label_cote">Côté</label>
         <select id="cote" name="cote">
           <option>Famille Sarfati</option>
           <option>Famille Levy</option>
-          <option>Ami(e) des mariés</option>
+          <option data-i18n="opt_cote3">Ami(e) des mariés</option>
         </select>
       </div>
       <div class="field">
-        <label for="present">Serez-vous présent(e) ?</label>
+        <label for="present" data-i18n="label_present">Serez-vous présent(e) ?</label>
         <select id="present" name="present">
-          <option>Oui, avec grand plaisir</option>
-          <option>Oui, une partie du week-end</option>
-          <option>Non, malheureusement</option>
+          <option data-i18n="opt_present1">Oui, avec grand plaisir</option>
+          <option data-i18n="opt_present2">Oui, une partie du week-end</option>
+          <option data-i18n="opt_present3">Non, malheureusement</option>
         </select>
       </div>
       <div class="field">
-        <label for="nb">Nombre de personnes</label>
+        <label for="nb" data-i18n="label_nb">Nombre de personnes</label>
         <input id="nb" name="nb" type="number" min="1" value="1">
       </div>
       <div class="field full">
-        <label for="msg">Message pour les mariés</label>
-        <textarea id="msg" name="msg" placeholder="מזל טוב ! Un petit mot pour Shana &amp; Ethan..."></textarea>
+        <label for="msg" data-i18n="label_msg">Message pour les mariés</label>
+        <textarea id="msg" name="msg" placeholder="מזל טוב ! Un petit mot pour Shana &amp; Ethan..." data-i18n-placeholder="placeholder_msg"></textarea>
       </div>
-      <button type="submit" class="rsvp-submit">Envoyer ma réponse</button>
-      <div class="rsvp-note">Un souci pour répondre ? Écrivez-nous directement à contact@ge-mesdocs.fr</div>
+      <button type="submit" class="rsvp-submit" data-i18n="btn_submit">Envoyer ma réponse</button>
+      <div class="rsvp-note" data-i18n="rsvp_note">Un souci pour répondre ? Écrivez-nous directement à contact@ge-mesdocs.fr</div>
     </form>
   </div>
 </section>
@@ -467,16 +527,177 @@ footer .credit{margin-top:34px;font-size:.72rem;letter-spacing:.1em;color:var(--
 <footer>
   <div class="script">Shana &amp; Ethan</div>
   <span class="heb">בְּעֶזְרַת הַשֵּׁם · תשפ״ו</span>
-  <div class="credit">Famille Sarfati &amp; Famille Levy — Tel Aviv, Israël</div>
+  <div class="credit" data-i18n="footer_credit">Famille Sarfati &amp; Famille Levy — Tel Aviv, Israël</div>
 </footer>
 
 <!-- MUSIC — Kol Sason Ve Kol Simha (HaLeviim), lecteur YouTube caché -->
-<button class="music-btn muted" id="musicBtn" aria-label="Musique">
+<button class="music-btn paused" id="musicBtn" aria-label="Musique" data-i18n-aria="aria_music">
   <div class="bars"><span></span><span></span><span></span></div>
 </button>
 <div id="yt-player" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;top:0;left:0;"></div>
 
 <script>
+// ---------- i18n : FR / EN / HE ----------
+const i18n = {
+  fr: {
+    nav_programme:"Programme", nav_lieu:"Lieu & Infos", nav_rsvp:"RSVP",
+    enter_btn:"🎵 Entrer", aria_music:"Musique",
+    names_sub:"Famille Sarfati · Famille Levy",
+    hero_date1:"Mercredi 29 Juillet", hero_date2:"Samedi 1er Août 2026",
+    hero_location:"Tel Aviv - Yafo, Israël", hero_cta:"Découvrir le week-end",
+    scrollcue:"Houppa & Chabbat",
+    cd_days:"Jours", cd_hours:"Heures", cd_min:"Minutes", cd_sec:"Secondes",
+    intro_title:"Un week-end, deux familles, une seule joie",
+    intro_p:"La famille Sarfati et la famille Levy ont l'immense bonheur de vous convier à célébrer le mariage de Shana & Ethan. Venus de Paris et de Tel Aviv, nous vous invitons à partager avec nous un Chabbat complet autour de la Houppa et d'une soirée festive, entre tradition, émotion et musique.",
+    family1_role:"Fille de David & Vanessa Sarfati", family2_role:"Fils de Haïm & Ruth Levy",
+    programme_title:"Le programme du week-end",
+    tl1_day:"Mercredi 29", tl1_time:"20h00",
+    tl1_desc:"Cérémonie de la Houppa à Yafo, suivie de la soirée dansante, pour ouvrir en beauté ce week-end de célébrations.",
+    tl2_day:"Vendredi 31", tl2_time:"18h30",
+    tl2_desc:"Accueil des invités, office de Kabbalat Chabbat suivi du dîner traditionnel du vendredi soir, tous ensemble en l'honneur des mariés.",
+    tl3_day:"Samedi 1<sup>er</sup>", tl3_time:"Matin & après-midi", tl3_title:"Shabbat en famille",
+    tl3_desc:"Office du matin, repas de Chabbat partagé et Seouda Shlishit (troisième repas) en fin d'après-midi, dans la joie et les chants.",
+    dress_text:"Tenue de soirée chic. Tons blancs, dorés & sable bienvenus. La Houppa se tient en intérieur, au Lawrence, dans le vieux Yafo.",
+    lieu_title:"Le lieu & infos pratiques",
+    venue_addr:"18 rue HaTzorfim · Yafo, Tel Aviv, Israël",
+    venue_desc:"Entre les pierres centenaires du vieux Yafo et les premières lumières de Tel Aviv, aux portes du marché aux puces, c'est là que nous vous accueillerons. Sous les arches de pierre du Lawrence et à ciel ouvert sur son grand patio, nous danserons ensemble jusqu'au bout de la nuit.",
+    venue_practical:"Parking sur place · Navette depuis les hôtels partenaires dès 19h00 le mercredi.",
+    hotels_title:"Hôtels recommandés à Tel Aviv",
+    hotel1_cat:"Bord de mer", hotel1_desc:"Vue mer, à 15 minutes du vieux Yafo. Navette prévue le mercredi soir.",
+    hotel2_cat:"Vieux Yafo", hotel2_desc:"À deux pas du Lawrence, dans les ruelles historiques du vieux Yafo.",
+    hotel3_cat:"Charme", hotel3_desc:"Adresse élégante dans le quartier de Rothschild, à deux pas des restaurants cashers.",
+    rsvp_title:"Confirmez votre présence",
+    rsvp_subtitle:"Merci de répondre avant le 15 juillet 2026 afin que nous puissions organiser au mieux ce week-end avec vous.",
+    label_nom:"Nom & prénom", placeholder_nom:"Votre nom complet",
+    label_cote:"Côté", opt_cote3:"Ami(e) des mariés",
+    label_present:"Serez-vous présent(e) ?",
+    opt_present1:"Oui, avec grand plaisir", opt_present2:"Oui, une partie du week-end", opt_present3:"Non, malheureusement",
+    label_nb:"Nombre de personnes",
+    label_msg:"Message pour les mariés", placeholder_msg:"מזל טוב ! Un petit mot pour Shana & Ethan...",
+    btn_submit:"Envoyer ma réponse",
+    rsvp_note:"Un souci pour répondre ? Écrivez-nous directement à contact@ge-mesdocs.fr",
+    footer_credit:"Famille Sarfati & Famille Levy — Tel Aviv, Israël",
+    page_title:"Shana & Ethan — מזל טוב · Mariage à Tel Aviv",
+    meta_desc:"Shana Sarfati & Ethan Levy vous invitent à célébrer leur mariage, le temps d'un week-end de Chabbat à Tel Aviv."
+  },
+  en: {
+    nav_programme:"Program", nav_lieu:"Venue & Info", nav_rsvp:"RSVP",
+    enter_btn:"🎵 Enter", aria_music:"Music",
+    names_sub:"The Sarfati Family · The Levy Family",
+    hero_date1:"Wednesday, July 29", hero_date2:"Saturday, August 1, 2026",
+    hero_location:"Tel Aviv - Jaffa, Israel", hero_cta:"Discover the weekend",
+    scrollcue:"Houppa & Shabbat",
+    cd_days:"Days", cd_hours:"Hours", cd_min:"Minutes", cd_sec:"Seconds",
+    intro_title:"One weekend, two families, one joy",
+    intro_p:"The Sarfati family and the Levy family are overjoyed to invite you to celebrate the wedding of Shana & Ethan. Coming from Paris and Tel Aviv, we invite you to share a full Shabbat weekend built around the Houppa and a festive evening, full of tradition, emotion and music.",
+    family1_role:"Daughter of David & Vanessa Sarfati", family2_role:"Son of Haïm & Ruth Levy",
+    programme_title:"The weekend program",
+    tl1_day:"Wednesday 29", tl1_time:"8:00 PM",
+    tl1_desc:"The Houppa ceremony in Jaffa, followed by a dance party, to open this celebration weekend in style.",
+    tl2_day:"Friday 31", tl2_time:"6:30 PM",
+    tl2_desc:"Welcoming guests, a Kabbalat Shabbat service followed by the traditional Friday night dinner, all together in honor of the newlyweds.",
+    tl3_day:"Saturday 1<sup>st</sup>", tl3_time:"Morning & afternoon", tl3_title:"Shabbat with family",
+    tl3_desc:"Morning service, a shared Shabbat meal and Seudah Shlishit (third meal) in the late afternoon, filled with joy and singing.",
+    dress_text:"Chic evening attire. Shades of white, gold & sand welcome. The Houppa is held indoors, at The Lawrence, in Old Jaffa.",
+    lieu_title:"Venue & practical info",
+    venue_addr:"18 HaTzorfim St. · Jaffa, Tel Aviv, Israel",
+    venue_desc:"Between the century-old stones of Old Jaffa and the first lights of Tel Aviv, right by the flea market, this is where we'll welcome you. Under the stone arches of The Lawrence and beneath the open sky of its patio, we'll dance together until the early hours.",
+    venue_practical:"On-site parking · Shuttle from partner hotels from 7:00 PM on Wednesday.",
+    hotels_title:"Recommended hotels in Tel Aviv",
+    hotel1_cat:"Seafront", hotel1_desc:"Sea view, 15 minutes from Old Jaffa. Shuttle provided on Wednesday evening.",
+    hotel2_cat:"Old Jaffa", hotel2_desc:"Steps from The Lawrence, in the historic alleys of Old Jaffa.",
+    hotel3_cat:"Boutique", hotel3_desc:"Elegant address in the Rothschild neighborhood, steps from kosher restaurants.",
+    rsvp_title:"Confirm your attendance",
+    rsvp_subtitle:"Please reply before July 15, 2026 so we can best organize this weekend with you.",
+    label_nom:"Full name", placeholder_nom:"Your full name",
+    label_cote:"Side", opt_cote3:"Friend of the couple",
+    label_present:"Will you attend?",
+    opt_present1:"Yes, with great pleasure", opt_present2:"Yes, part of the weekend", opt_present3:"No, unfortunately",
+    label_nb:"Number of guests",
+    label_msg:"Message for the couple", placeholder_msg:"מזל טוב! A few words for Shana & Ethan...",
+    btn_submit:"Send my response",
+    rsvp_note:"Trouble responding? Email us directly at contact@ge-mesdocs.fr",
+    footer_credit:"The Sarfati Family & The Levy Family — Tel Aviv, Israel",
+    page_title:"Shana & Ethan — מזל טוב · Wedding in Tel Aviv",
+    meta_desc:"Shana Sarfati & Ethan Levy invite you to celebrate their wedding, over a full Shabbat weekend in Tel Aviv."
+  },
+  he: {
+    nav_programme:"התוכנית", nav_lieu:"המקום ומידע", nav_rsvp:"אישור הגעה",
+    enter_btn:"🎵 כניסה", aria_music:"מוזיקה",
+    names_sub:"משפחת סרפתי · משפחת לוי",
+    hero_date1:"יום רביעי, 29 ביולי", hero_date2:"שבת, 1 באוגוסט 2026",
+    hero_location:"תל אביב-יפו, ישראל", hero_cta:"לגלות את סוף השבוע",
+    scrollcue:"חופה ושבת",
+    cd_days:"ימים", cd_hours:"שעות", cd_min:"דקות", cd_sec:"שניות",
+    intro_title:"סוף שבוע אחד, שתי משפחות, שמחה אחת",
+    intro_p:"משפחת סרפתי ומשפחת לוי שמחות להזמין אתכם לחגוג את חתונתם של שאנה ואיתן. מגיעים מפריז ומתל אביב, אנו מזמינים אתכם לשתף איתנו שבת שלמה סביב החופה וערב חגיגי, מלא במסורת, התרגשות ומוזיקה.",
+    family1_role:"בתם של דיוויד ונסה סרפתי", family2_role:"בנם של חיים ורות לוי",
+    programme_title:"התוכנית של סוף השבוע",
+    tl1_day:"יום רביעי 29", tl1_time:"20:00",
+    tl1_desc:"טקס החופה ביפו, ולאחריו ערב ריקודים, לפתיחה חגיגית של סוף השבוע.",
+    tl2_day:"יום שישי 31", tl2_time:"18:30",
+    tl2_desc:"קבלת האורחים, תפילת קבלת שבת ולאחריה סעודת ליל שישי המסורתית, כולנו יחד לכבוד החתן והכלה.",
+    tl3_day:"שבת ה-1", tl3_time:"בוקר ואחר הצהריים", tl3_title:"שבת במשפחה",
+    tl3_desc:"תפילת שחרית, סעודת שבת משותפת וסעודה שלישית בשעות אחר הצהריים המאוחרות, בשמחה ובשירה.",
+    dress_text:"לבוש ערב אלגנטי. גוונים של לבן, זהב וחול יתקבלו בברכה. החופה מתקיימת באולם סגור, בלורנס שביפו העתיקה.",
+    lieu_title:"המקום ומידע שימושי",
+    venue_addr:"רחוב הצורפים 18 · יפו, תל אביב, ישראל",
+    venue_desc:"בין אבניה העתיקות של יפו העתיקה לאורותיה הראשונים של תל אביב, ליד שער השוק הפשפשים, שם נקבל את פניכם. תחת קשתות האבן של הלורנס ותחת כיפת השמיים בפטיו הגדול, נרקוד יחד עד אור הבוקר.",
+    venue_practical:"חניה במקום · הסעה מהמלונות השותפים החל מהשעה 19:00 ביום רביעי.",
+    hotels_title:"מלונות מומלצים בתל אביב",
+    hotel1_cat:"חוף הים", hotel1_desc:"נוף לים, 15 דקות מיפו העתיקה. הסעה מובטחת ביום רביעי בערב.",
+    hotel2_cat:"יפו העתיקה", hotel2_desc:"צעדים בודדים מהלורנס, בסמטאות ההיסטוריות של יפו העתיקה.",
+    hotel3_cat:"בוטיק", hotel3_desc:"כתובת אלגנטית בשכונת רוטשילד, צעדים בודדים ממסעדות כשרות.",
+    rsvp_title:"אישור הגעה",
+    rsvp_subtitle:"אנא אשרו הגעתכם עד ה-15 ביולי 2026 כדי שנוכל לארגן בצורה הטובה ביותר את סוף השבוע איתכם.",
+    label_nom:"שם מלא", placeholder_nom:"השם המלא שלכם",
+    label_cote:"צד", opt_cote3:"חבר/ה של הזוג",
+    label_present:"האם תגיעו?",
+    opt_present1:"כן, בשמחה רבה", opt_present2:"כן, לחלק מסוף השבוע", opt_present3:"לא, לצערי",
+    label_nb:"מספר אורחים",
+    label_msg:"הודעה לזוג", placeholder_msg:"מזל טוב! כמה מילים לשאנה ואיתן...",
+    btn_submit:"שליחת התשובה",
+    rsvp_note:"יש בעיה בשליחת התשובה? כתבו לנו ישירות לכתובת contact@ge-mesdocs.fr",
+    footer_credit:"משפחת סרפתי ומשפחת לוי — תל אביב, ישראל",
+    page_title:"שאנה ואיתן — מזל טוב · חתונה בתל אביב",
+    meta_desc:"שאנה סרפתי ואיתן לוי מזמינים אתכם לחגוג את חתונתם, לאורך סוף שבוע שלם בתל אביב."
+  }
+};
+
+function applyLang(lang){
+  const dict = i18n[lang];
+  if (!dict) return;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria');
+    if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+  });
+  document.getElementById('pageTitle').textContent = dict.page_title;
+  document.getElementById('metaDesc').setAttribute('content', dict.meta_desc);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = (lang === 'he') ? 'rtl' : 'ltr';
+  document.querySelectorAll('.lang-switch button').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+  localStorage.setItem('siteLang', lang);
+}
+
+document.querySelectorAll('.lang-switch button').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+});
+applyLang(localStorage.getItem('siteLang') || 'fr');
+
 // Nav scroll state + mobile menu
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
@@ -487,8 +708,8 @@ const navLinks = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-// Countdown to the Houppa — Jeudi 17 Septembre 2026, 20h00 (heure d'Israël)
-const weddingDate = new Date('2026-09-17T20:00:00+03:00').getTime();
+// Countdown to the Houppa — Mercredi 29 Juillet 2026, 20h00 (heure d'Israël)
+const weddingDate = new Date('2026-07-29T20:00:00+03:00').getTime();
 function tickCountdown(){
   const now = Date.now();
   const diff = Math.max(0, weddingDate - now);
@@ -511,29 +732,24 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 revealEls.forEach(el => io.observe(el));
 
-// Music — démarre automatiquement (muet, contrainte des navigateurs) puis
-// se démasque dès la première interaction du visiteur avec la page.
+// Music — la lecture audio ne peut démarrer qu'après un vrai clic (règle de
+// tous les navigateurs, mobile compris). L'écran "Entrer" sert de déclencheur.
 const musicBtn = document.getElementById('musicBtn');
+const entryGate = document.getElementById('entryGate');
+const enterBtn = document.getElementById('enterBtn');
 let ytPlayer = null;
-let musicMuted = true;
-
-function unmuteMusic(){
-  if (!ytPlayer || !musicMuted) return;
-  ytPlayer.unMute();
-  ytPlayer.setVolume(100);
-  musicMuted = false;
-  musicBtn.classList.remove('muted', 'paused');
-}
+let ytReady = false;
+let wantsPlay = false;
 
 window.onYouTubeIframeAPIReady = function(){
   ytPlayer = new YT.Player('yt-player', {
     videoId: '0X2ps0lVu2E',
     playerVars: {
-      autoplay: 1, mute: 1, loop: 1, playlist: '0X2ps0lVu2E',
+      autoplay: 0, mute: 0, loop: 1, playlist: '0X2ps0lVu2E',
       controls: 0, disablekb: 1, modestbranding: 1, playsinline: 1
     },
     events: {
-      onReady: (e) => { e.target.playVideo(); }
+      onReady: () => { ytReady = true; if (wantsPlay) startMusic(); }
     }
   });
 };
@@ -541,14 +757,21 @@ const ytTag = document.createElement('script');
 ytTag.src = 'https://www.youtube.com/iframe_api';
 document.head.appendChild(ytTag);
 
-document.addEventListener('click', unmuteMusic, { once: true });
-document.addEventListener('scroll', unmuteMusic, { once: true });
-document.addEventListener('keydown', unmuteMusic, { once: true });
-
-musicBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
+function startMusic(){
   if (!ytPlayer) return;
-  if (musicMuted) { unmuteMusic(); return; }
+  ytPlayer.unMute();
+  ytPlayer.setVolume(100);
+  ytPlayer.playVideo();
+  musicBtn.classList.remove('paused');
+}
+
+enterBtn.addEventListener('click', () => {
+  entryGate.classList.add('hidden');
+  if (ytReady) startMusic(); else wantsPlay = true;
+});
+
+musicBtn.addEventListener('click', () => {
+  if (!ytPlayer) return;
   if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
     ytPlayer.pauseVideo();
     musicBtn.classList.add('paused');
